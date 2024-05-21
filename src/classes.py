@@ -38,8 +38,8 @@ class Operation:
         elif not payment_info:
             number_card = ""
         else:
-            number_card = number_card[:6] + "******" + number_card[-4]
-        number_card = "".join([number_card[i:i+4] for i in range(0, len(number_card), 4)])
+            number_card = number_card[:6] + "******" + number_card[-4:]
+            number_card = "".join([number_card[i:i+4] for i in range(0, len(number_card), 4)])
         info.append(number_card)
         return " ".join(info)
 
