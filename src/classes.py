@@ -33,10 +33,13 @@ class Operation:
         """
         info = payment_info.split(" ")
         number_card = info.pop(-1)
-        if payment_info.startswith(""):
-            number_card = number_card
+        if payment_info.startswith("Счет"):
+            number_card = "**" + number_card[-4:]
+        elif not payment_info:
+            number_card = ""
         else:
-            number_card = number_card
+            number_card = number_card[:6] + "******" + number_card[-4]
+        number_card = "".join([number_card[i:i+4] for i in range(0, len(number_card), 4)])
         info.append(number_card)
         return " ".join(info)
 
@@ -59,7 +62,7 @@ class Operation:
         from_ = self.convert_payment(self.from_)
         delimiter = " -> " if from_ else ""
         return (
-            f"{self.convert_date()}{self.description()}\n"
+            f"{self.convert_date()} {self.description}\n"
             f"{from_}{delimiter}{self.convert_payment(self.to)}\n"
-            f"{self.amount}{self.corrency_name}"
+            f"{self.amount} {self.corrency_name}"
         )
