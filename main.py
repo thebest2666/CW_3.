@@ -1,4 +1,4 @@
-from config import COUNT_OF_OPERATIONS, OPERATION_PATH
+from config import OPERATION_PATH, OPERATIONS_COUNT
 from src.utils import get_operations_instances, sort_operations, load_date, get_operations
 
 
@@ -8,7 +8,7 @@ def main():
     """
     operations = load_date(OPERATION_PATH)
     get_operation = get_operations(operations)
-    operations = get_operation[:COUNT_OF_OPERATIONS]
+    operations = get_operation[:OPERATIONS_COUNT]
     operation_instance = get_operations_instances(operations)
     sorted_operations = sort_operations(operation_instance)
     for operation in sorted_operations:
